@@ -40,10 +40,10 @@ def add_smartphone(request:HttpRequest):
     return JsonResponse({'Status':200})
 
 def get_id(request:HttpRequest,id:int):
-    smartphones = Smartphones.objects.all()
+    smartphone = Smartphones.objects.all()
 
     result = []
-    for phone in smartphones:
+    for phone in smartphone:
         if int(id) == phone.pk:
             result.append({
             'id':phone.pk,
@@ -58,3 +58,12 @@ def get_id(request:HttpRequest,id:int):
             return JsonResponse({'result':result})
     else:
         return HttpResponse('Bunday IDdagi maxsulot yo\'q')
+    
+
+def get_delete(request:HttpRequest,id:int):
+    smartphone = Smartphones.objects.all()
+    for phone in smartphone:
+        if int(id) == phone.pk:
+            phone.delete()
+    return JsonResponse({'status':200})
+
