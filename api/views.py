@@ -38,3 +38,23 @@ def add_smartphone(request:HttpRequest):
     phone.save()
 
     return JsonResponse({'Status':200})
+
+def get_id(request:HttpRequest,id:int):
+    smartphones = Smartphones.objects.all()
+
+    result = []
+    for phone in smartphones:
+        if int(id) == phone.pk:
+            result.append({
+            'id':phone.pk,
+            'price':phone.price,
+            'img_url':phone.img_url,
+            'color':phone.color,
+            'ram':phone.ram,
+            'memory':phone.memory,
+            'name':phone.name,
+            'model':phone.model
+            })
+            return JsonResponse({'result':result})
+    else:
+        return HttpResponse('Bunday IDdagi maxsulot yo\'q')
