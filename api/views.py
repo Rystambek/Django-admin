@@ -24,3 +24,17 @@ def smartphones(request:HttpRequest):
         })
 
     return JsonResponse({'results':results})
+
+def add_smartphone(request:HttpRequest):
+    phone = Smartphones(
+        price = "1500000",
+        img_url = 'dfewfafw',
+        color = 'while',
+        ram = '16 GB',
+        memory = '256 GB',
+        name = 'Samsung A22',
+        model = 'Samsung'
+    )
+    phone.save()
+
+    return JsonResponse({'Status':200})
